@@ -1647,7 +1647,7 @@ _NameRaterNamedText::
 
 Text_Gained::
 	text_ram wStringBuffer1
-	text " gained@@"
+	text " lost@@"
 
 _BoostedExpPointsText::
 	text_start

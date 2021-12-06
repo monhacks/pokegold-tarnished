@@ -6861,17 +6861,39 @@ GiveExperiencePoints:
 	pop bc
 	ld hl, MON_EXP + 2
 	add hl, bc
-	ld d, [hl]
+
+	;
+	; D = Pokemon EXP
+	; A = EXP Gained
+	;
+	; Swap D and A so
+	; A = Pokemon EXP
+	; D = EXP Gained
+	;
+
 	ldh a, [hQuotient + 3]
-	add d
+	ld d, a
+
+	ld a, [hl]
+
+	;
+	; Modified to subtract EXP instead.
+	;
+
+	sub d
+
 	ld [hld], a
-	ld d, [hl]
+
 	ldh a, [hQuotient + 2]
-	adc d
+	ld d, a
+	ld a, [hl]
+
+	sbc d
+
 	ld [hl], a
 	jr nc, .no_exp_overflow
 	dec hl
-	inc [hl]
+	dec [hl]
 
 .no_exp_overflow
 	ld a, [wCurPartyMon]
