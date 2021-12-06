@@ -79,7 +79,7 @@ _RevitalizedText::
 
 _GrewToLevelText::
 	text_ram wStringBuffer1
-	text " withered to"
+	text " weakened to"
 	line "level @"
 	text_decimal wCurPartyLevel, 1, 3
 	text "...@"
