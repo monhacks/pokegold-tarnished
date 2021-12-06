@@ -7326,9 +7326,13 @@ AnimateExpBar:
 
 .LoopBarAnimation:
 	ld d, 3
-	dec b
-.anim_loop
+
 	inc b
+
+.anim_loop
+
+	dec b
+
 	push bc
 	push de
 	hlcoord 17, 11
@@ -7341,10 +7345,14 @@ AnimateExpBar:
 	xor a
 	ldh [hBGMapMode], a
 	pop bc
-	ld a, c
+
+	ld a, $0
+
 	cp b
 	jr z, .end_animation
-	inc b
+
+	dec b
+
 	push bc
 	push de
 	hlcoord 17, 11
