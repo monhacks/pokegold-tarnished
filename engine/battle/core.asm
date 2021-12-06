@@ -7233,6 +7233,8 @@ AnimateExpBar:
 	dec [hl]
 
 .NoOverflow:
+	pop de
+
 	ld d, MAX_LEVEL
 	callfar CalcExpAtLevel
 	ldh a, [hProduct + 1]
