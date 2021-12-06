@@ -79,10 +79,10 @@ _RevitalizedText::
 
 _GrewToLevelText::
 	text_ram wStringBuffer1
-	text " grew to"
+	text " withered to"
 	line "level @"
 	text_decimal wCurPartyLevel, 1, 3
-	text "!@"
+	text "...@"
 	sound_dex_fanfare_50_79 ; plays SFX_DEX_FANFARE_50_79, identical to SFX_LEVEL_UP
 	text_promptbutton
 	text_end
