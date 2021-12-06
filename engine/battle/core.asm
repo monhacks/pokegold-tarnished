@@ -7275,7 +7275,7 @@ AnimateExpBar:
 	ld [wBattleMonLevel], a
 	push de
 	call .PlayExpBarSound
-	ld c, $40
+	ld c, $0
 	call .LoopBarAnimation
 	call PrintPlayerHUD
 	ld hl, wBattleMonNickname
@@ -7345,9 +7345,7 @@ AnimateExpBar:
 	xor a
 	ldh [hBGMapMode], a
 	pop bc
-
-	ld a, $0
-
+	ld a, c
 	cp b
 	jr z, .end_animation
 
