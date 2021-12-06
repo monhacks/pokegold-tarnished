@@ -7214,15 +7214,23 @@ AnimateExpBar:
 	ld de, wTempMonExp + 2
 	call CalcExpBar
 	push bc
+
+	push de
 	ld hl, wTempMonExp + 2
 	ld a, [wExperienceGained + 2]
-	add [hl]
+	ld d, a
+	ld a, [hl]
+	sub d
 	ld [hld], a
+
 	ld a, [wExperienceGained + 1]
-	adc [hl]
+	ld d, a
+	ld a, [hl]
+	sbc d
 	ld [hld], a
+
 	jr nc, .NoOverflow
-	inc [hl]
+	dec [hl]
 
 .NoOverflow:
 	ld d, MAX_LEVEL
