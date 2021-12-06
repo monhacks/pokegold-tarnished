@@ -7269,7 +7269,7 @@ AnimateExpBar:
 	ld a, e
 	cp d
 	jr z, .FinishExpBar
-	inc a
+	dec a
 	ld [wTempMonLevel], a
 	ld [wCurPartyLevel], a
 	ld [wBattleMonLevel], a
@@ -7290,7 +7290,7 @@ AnimateExpBar:
 	ld hl, BattleText_StringBuffer1GrewToLevel
 	call StdBattleTextbox
 	pop de
-	inc e
+	dec e
 	ld b, $0
 	jr .LoopLevels
 
