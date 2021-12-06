@@ -7074,9 +7074,9 @@ GiveExperiencePoints:
 	inc b
 	ld a, b
 	ld [wCurPartyLevel], a
-	push bc
-	predef LearnLevelMoves
-	pop bc
+	;push bc
+	;predef LearnLevelMoves
+	;pop bc
 	ld a, b
 	cp c
 	jr nz, .level_loop
@@ -7086,7 +7086,7 @@ GiveExperiencePoints:
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, SET_FLAG
-	predef SmallFarFlagAction
+	;predef SmallFarFlagAction
 	pop af
 	ld [wCurPartyLevel], a
 
