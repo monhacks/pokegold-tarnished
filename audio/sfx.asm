@@ -2710,17 +2710,17 @@ Sfx_ExpBar:
 
 Sfx_ExpBar_Ch5:
 	duty_cycle 2
-	pitch_sweep 13, 7
-	square_note 8, 14, 1, 1872
-	pitch_sweep 14, 7
-	square_note 8, 4, 8, 1760
-	square_note 8, 5, 8, 1784
-	square_note 8, 6, 8, 1808
-	square_note 8, 7, 8, 1832
-	square_note 8, 8, 8, 1856
-	square_note 8, 9, 8, 1880
-	square_note 16, 10, 8, 1904
-	pitch_sweep 0, 8
+	pitch_sweep 14, -7
+	square_note 8, 14, 1, 1912
+	pitch_sweep 13, -7
+	square_note 16, 10, 0, 1904
+	square_note 8, 9, 0, 1880
+	square_note 8, 8, 0, 1856
+	square_note 8, 7, 0, 1832
+	square_note 8, 6, 0, 1808
+	square_note 8, 5, 0, 1784
+	square_note 8, 4, 0, 1760
+	pitch_sweep 0, -8
 	sound_ret
 
 Sfx_MilkDrink:
@@ -3738,16 +3738,16 @@ Sfx_HitEndOfExpBar:
 
 Sfx_HitEndOfExpBar_Ch5:
 	duty_cycle 2
-	square_note 1, 14, 1, 1929
+	square_note 1, 14, 1, 1969
 	square_note 1, 14, 1, 1954
-	square_note 16, 14, 1, 1969
+	square_note 16, 14, 1, 1929
 	sound_ret
 
 Sfx_HitEndOfExpBar_Ch6:
 	duty_cycle 2
-	square_note 1, 14, 1, 1954
+	square_note 1, 14, 1, 1988
 	square_note 1, 14, 1, 1969
-	square_note 16, 14, 1, 1988
+	square_note 16, 14, 1, 1954
 	sound_ret
 
 Sfx_GiveTrademon:

@@ -7291,7 +7291,7 @@ AnimateExpBar:
 	call StdBattleTextbox
 	pop de
 	dec e
-	ld b, $0
+	ld b, $40
 	jr .LoopLevels
 
 .FinishExpBar:
