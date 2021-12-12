@@ -6799,6 +6799,11 @@ GiveExperiencePoints:
 	inc de
 	dec c
 	jr nz, .stat_exp_loop
+
+	;
+	; Start EXP "Gain"
+	;
+
 	xor a
 	ldh [hMultiplicand + 0], a
 	ldh [hMultiplicand + 1], a
@@ -6905,9 +6910,16 @@ GiveExperiencePoints:
 	ld [wCurSpecies], a
 	call GetBaseData
 	push bc
-	ld d, MAX_LEVEL
+	ld d, MIN_LEVEL
 	callfar CalcExpAtLevel
 	pop bc
+
+	;
+	; if (CurrentExp < MinLevelExp) {
+	;	CurrentExp = MinLevelExp
+	; }
+	;
+
 	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
@@ -6922,8 +6934,12 @@ GiveExperiencePoints:
 	ld a, [hld]
 	sbc c
 	ld a, [hl]
+	and $80
+	jr nz, .lower_cap_exp
 	sbc b
-	jr c, .not_max_exp
+	jr c, .not_min_exp
+
+.lower_cap_exp
 	ld a, b
 	ld [hli], a
 	ld a, c
@@ -6931,8 +6947,8 @@ GiveExperiencePoints:
 	ld a, d
 	ld [hld], a
 
-.not_max_exp
-; Check if the mon leveled up
+.not_min_exp
+; Check if the mon leveled down
 	xor a ; PARTYMON
 	ld [wMonType], a
 	predef CopyMonToTempMon
@@ -6943,7 +6959,7 @@ GiveExperiencePoints:
 	ld a, [hl]
 	cp d
 	jp z, .next_mon
-; <NICKNAME> grew to level ##!
+; <NICKNAME> weakened to level ##...
 	ld [wTempLevel], a
 	ld a, [wCurPartyLevel]
 	push af
@@ -7235,7 +7251,7 @@ AnimateExpBar:
 .NoOverflow:
 	pop de
 
-	ld d, MAX_LEVEL
+	ld d, MIN_LEVEL
 	callfar CalcExpAtLevel
 	ldh a, [hProduct + 1]
 	ld b, a
@@ -7249,8 +7265,12 @@ AnimateExpBar:
 	ld a, [hld]
 	sbc c
 	ld a, [hl]
+	and $80
+	jr nz, .FloorExp
 	sbc b
-	jr c, .AlreadyAtMaxExp
+	jr c, .AlreadyAtMinExp
+
+.FloorExp
 	ld a, b
 	ld [hli], a
 	ld a, c
@@ -7258,7 +7278,7 @@ AnimateExpBar:
 	ld a, d
 	ld [hld], a
 
-.AlreadyAtMaxExp:
+.AlreadyAtMinExp:
 	callfar CalcLevel
 	ld a, d
 	pop bc
