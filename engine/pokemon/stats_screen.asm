@@ -430,6 +430,11 @@ LoadPinkPage:
 	lb bc, 3, 7
 	call PrintNum
 ; level-up graphics and strings
+
+;
+; RAZTODO
+;
+
 	call .CalcExpToNextLevel
 	ld de, wExpToNextLevel
 	hlcoord 13, 13
@@ -462,6 +467,10 @@ LoadPinkPage:
 	and a
 	jp z, StatsScreen_PlaceFrontpic
 	ret
+
+;
+; RAZTODO
+;
 
 .CalcExpToNextLevel:
 	ld a, [wTempMonLevel]
