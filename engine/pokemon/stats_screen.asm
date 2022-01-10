@@ -416,9 +416,9 @@ LoadPinkPage:
 ; print next level
 	ld a, [wTempMonLevel]
 	push af
-	cp MAX_LEVEL
+	cp  MIN_LEVEL
 	jr z, .got_level
-	inc a
+	dec a
 	ld [wTempMonLevel], a
 .got_level
 	hlcoord 17, 14
@@ -468,33 +468,37 @@ LoadPinkPage:
 	jp z, StatsScreen_PlaceFrontpic
 	ret
 
-;
-; RAZTODO
-;
-
 .CalcExpToNextLevel:
 	ld a, [wTempMonLevel]
-	cp MAX_LEVEL
-	jr z, .AlreadyAtMaxLevel
-	inc a
+	cp MIN_LEVEL
+	jr z, .AlreadyAtMinLevel
 	ld d, a
 	call CalcExpAtLevel
+
+
 	ld hl, wTempMonExp + 2
 	ld hl, wTempMonExp + 2
 	ldh a, [hQuotient + 3]
-	sub [hl]
+	ld d, a
+	ld a, [hl]
+	inc a
+	sub d
 	dec hl
 	ld [wExpToNextLevel + 2], a
 	ldh a, [hQuotient + 2]
-	sbc [hl]
+	ld d, a
+	ld a, [hl]
+	sbc d
 	dec hl
 	ld [wExpToNextLevel + 1], a
 	ldh a, [hQuotient + 1]
-	sbc [hl]
+	ld d, a
+	ld a, [hl]
+	sbc d
 	ld [wExpToNextLevel], a
 	ret
 
-.AlreadyAtMaxLevel:
+.AlreadyAtMinLevel:
 	ld hl, wExpToNextLevel
 	xor a
 	ld [hli], a
