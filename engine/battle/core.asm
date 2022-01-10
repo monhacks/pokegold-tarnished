@@ -6923,8 +6923,12 @@ GiveExperiencePoints:
 	;
 	; RAZTODO: I think there is something wrong here. Exp is dropping to min value...
 	;
+	; First check if exp is negative. If so then lower cap. Then compare from top byte to bottom
+	; byte. If  min level is greater (hQuotient > hl), then lower cap.
+	;
 
-	ld hl, MON_EXP + 2
+
+	ld hl, MON_EXP
 	add hl, bc
 	push bc
 	ldh a, [hQuotient + 1]
@@ -6933,15 +6937,21 @@ GiveExperiencePoints:
 	ld c, a
 	ldh a, [hQuotient + 3]
 	ld d, a
+
+	ld a, [hl]
+	and $80
+	jr nz, .lower_cap_exp
+
+	inc hl
+	inc hl
+
 	ld a, [hld]
 	sub d
 	ld a, [hld]
 	sbc c
 	ld a, [hl]
-	and $80
-	jr nz, .lower_cap_exp
 	sbc b
-	jr c, .not_min_exp
+	jr nc, .not_min_exp
 
 .lower_cap_exp
 	ld a, b
@@ -7255,6 +7265,10 @@ AnimateExpBar:
 .NoOverflow:
 	pop de
 
+	; RAZYODO
+	; First check if exp is negative. If so then lower cap. Then compare from top byte to bottom
+	; byte. If  min level is greater (hProduct> hl), then lower cap.
+
 	ld d, MIN_LEVEL
 	callfar CalcExpAtLevel
 	ldh a, [hProduct + 1]
@@ -7272,7 +7286,7 @@ AnimateExpBar:
 	and $80
 	jr nz, .FloorExp
 	sbc b
-	jr c, .AlreadyAtMinExp
+	jr nc, .AlreadyAtMinExp
 
 .FloorExp
 	ld a, b

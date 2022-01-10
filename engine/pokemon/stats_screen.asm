@@ -432,7 +432,7 @@ LoadPinkPage:
 ; level-up graphics and strings
 
 ;
-; RAZTODO
+; RAZTODO: change task to indicate a dropping level.
 ;
 
 	call .CalcExpToNextLevel
