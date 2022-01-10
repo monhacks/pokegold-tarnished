@@ -6920,6 +6920,10 @@ GiveExperiencePoints:
 	; }
 	;
 
+	;
+	; RAZTODO: I think there is something wrong here. Exp is dropping to min value...
+	;
+
 	ld hl, MON_EXP + 2
 	add hl, bc
 	push bc
