@@ -6931,6 +6931,7 @@ GiveExperiencePoints:
 	ld hl, MON_EXP
 	add hl, bc
 	push bc
+	push hl
 	ldh a, [hQuotient + 1]
 	ld b, a
 	ldh a, [hQuotient + 2]
@@ -6938,30 +6939,45 @@ GiveExperiencePoints:
 	ldh a, [hQuotient + 3]
 	ld d, a
 
+	;
+	; Check if negative.
+	;
+
 	ld a, [hl]
 	and $80
 	jr nz, .lower_cap_exp
 
-	inc hl
-	inc hl
+	;
+	; Check if less than min starting from top byte.
+	;
 
-	ld a, [hld]
-	sub d
-	ld a, [hld]
-	sbc c
+	ld a, [hli]
+	cp b
+	jr c, .lower_cap_exp
+	jr nz, .not_min_exp
+
+	ld a, [hli]
+	cp c
+	jr c, .lower_cap_exp
+	jr nz, .not_min_exp
+
 	ld a, [hl]
-	sbc b
-	jr nc, .not_min_exp
+	cp d
+	jr c, .lower_cap_exp
+	jr nz, .not_min_exp
 
 .lower_cap_exp
+	pop hl
 	ld a, b
 	ld [hli], a
 	ld a, c
 	ld [hli], a
 	ld a, d
 	ld [hld], a
+	push hl
 
 .not_min_exp
+	pop hl
 ; Check if the mon leveled down
 	xor a ; PARTYMON
 	ld [wMonType], a
@@ -7265,10 +7281,6 @@ AnimateExpBar:
 .NoOverflow:
 	pop de
 
-	; RAZTODO
-	; First check if exp is negative. If so then lower cap. Then compare from top byte to bottom
-	; byte. If  min level is greater (hProduct> hl), then lower cap.
-
 	ld d, MIN_LEVEL
 	callfar CalcExpAtLevel
 	ldh a, [hProduct + 1]
@@ -7277,24 +7289,43 @@ AnimateExpBar:
 	ld c, a
 	ldh a, [hProduct + 3]
 	ld d, a
-	ld hl, wTempMonExp + 2
-	ld a, [hld]
-	sub d
-	ld a, [hld]
-	sbc c
+
+	;
+	; Check if negative.
+	;
+
+	ld hl, wTempMonExp
 	ld a, [hl]
 	and $80
 	jr nz, .FloorExp
-	sbc b
-	jr nc, .AlreadyAtMinExp
+
+	;
+	; Check if less than min starting from top byte.
+	;
+
+	ld a, [hli]
+	cp b
+	jr c, .FloorExp
+	jr nz, .AlreadyAtMinExp
+
+	ld a, [hli]
+	cp c
+	jr c, .FloorExp
+	jr nz, .AlreadyAtMinExp
+
+	ld a, [hl]
+	cp d
+	jr c, .FloorExp
+	jr nz, .AlreadyAtMinExp
 
 .FloorExp
+	ld hl, wTempMonExp
 	ld a, b
 	ld [hli], a
 	ld a, c
 	ld [hli], a
 	ld a, d
-	ld [hld], a
+	ld [hl], a
 
 .AlreadyAtMinExp:
 	callfar CalcLevel
