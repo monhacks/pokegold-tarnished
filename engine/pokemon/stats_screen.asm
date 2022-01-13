@@ -431,10 +431,6 @@ LoadPinkPage:
 	call PrintNum
 ; level-up graphics and strings
 
-;
-; RAZTODO: change task to indicate a dropping level.
-;
-
 	call .CalcExpToNextLevel
 	ld de, wExpToNextLevel
 	hlcoord 13, 13
@@ -443,7 +439,7 @@ LoadPinkPage:
 	hlcoord 10, 12
 	ld de, .LevelUpStr
 	call PlaceString
-	hlcoord 14, 14
+	hlcoord 11, 14
 	ld de, .ToStr
 	call PlaceString
 	ld a, [wTempMonLevel]
@@ -517,10 +513,10 @@ LoadPinkPage:
 	db "EXP POINTS@"
 
 .LevelUpStr:
-	db "LEVEL UP@"
+	db "REMAINING EXP@"
 
 .ToStr:
-	db "TO@"
+	db "UNTIL@"
 
 .PkrsStr:
 	db "#RUS@"

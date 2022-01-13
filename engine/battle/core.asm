@@ -7265,7 +7265,7 @@ AnimateExpBar:
 .NoOverflow:
 	pop de
 
-	; RAZYODO
+	; RAZTODO
 	; First check if exp is negative. If so then lower cap. Then compare from top byte to bottom
 	; byte. If  min level is greater (hProduct> hl), then lower cap.
 
