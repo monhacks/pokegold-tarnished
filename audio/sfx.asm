@@ -510,7 +510,7 @@ Sfx_DexFanfare5079_Ch5:
 	note B_, 2
 	volume_envelope 11, 3
 	octave 4
-	note G#, 12
+	note G_, 12
 	sound_ret
 
 Sfx_LevelUp_Ch6:
@@ -523,7 +523,7 @@ Sfx_DexFanfare5079_Ch6:
 	note E_, 2
 	note E_, 2
 	volume_envelope 12, 3
-	note B_, 12
+	note A#, 12
 	sound_ret
 
 Sfx_LevelUp_Ch7:
