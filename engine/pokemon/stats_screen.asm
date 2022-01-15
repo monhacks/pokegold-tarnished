@@ -513,7 +513,7 @@ LoadPinkPage:
 	db "EXP POINTS@"
 
 .LevelUpStr:
-	db "REMAINING EXP@"
+	db "REMAINING@"
 
 .ToStr:
 	db "UNTIL@"
