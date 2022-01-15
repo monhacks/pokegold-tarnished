@@ -1274,10 +1274,11 @@ RareCandyEffect:
 	call GetPartyParamLocation
 
 	ld a, [hl]
-	cp MAX_LEVEL
-	jp nc, NoEffectMessage
+	cp MIN_LEVEL
+	jp z, NoEffectMessage
+	jp c, NoEffectMessage
 
-	inc a
+	dec a
 	ld [hl], a
 	ld [wCurPartyLevel], a
 	push de
