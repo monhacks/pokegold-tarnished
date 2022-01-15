@@ -1332,8 +1332,19 @@ _DaycareDummyText::
 
 _DayCareManIntroText::
 	text "I'm the DAY-CARE"
-	line "MAN. Want me to"
-	cont "raise a #MON?"
+	line "MAN."
+
+	para "My life is falling"
+	line "apart..."
+
+	para "I can't seem to"
+	line "make #MON"
+	cont "stronger anymore."
+
+	para "I can try to"
+	line "raise one if you"
+	cont "want to give this"
+	cont "old man a chance?"
 	done
 
 _DayCareManIntroEggText::
@@ -1358,6 +1369,14 @@ _DayCareManIntroEggText::
 _DayCareLadyIntroText::
 	text "I'm the DAY-CARE"
 	line "LADY."
+
+	para "I don't know what"
+	line "is wrong with us."
+
+	para "#MON don't get "
+	line "stronger anymore!"
+
+	para "..."
 
 	para "Should I raise a"
 	line "#MON for you?"
@@ -1384,7 +1403,7 @@ _DayCareLadyIntroEggText::
 
 _WhatShouldIRaiseText::
 	text "What should I"
-	line "raise for you?"
+	line "take from you?"
 	prompt
 
 _OnlyOneMonText::
@@ -1409,7 +1428,7 @@ _LastHealthyMonText::
 	prompt
 
 _IllRaiseYourMonText::
-	text "OK. I'll raise"
+	text "OK. I'll take"
 	line "your @"
 	text_ram wStringBuffer1
 	text "."
@@ -1447,7 +1466,7 @@ _YourMonHasGrownText::
 	done
 
 _PerfectHeresYourMonText::
-	text "Perfect! Here's"
+	text "Alright. Here's"
 	line "your #MON."
 	prompt
 
@@ -1459,12 +1478,15 @@ _GotBackMonText::
 	prompt
 
 _BackAlreadyText::
-	text "Huh? Back already?"
-	line "Your @"
+	text "Still nothing..."
+
+	para "Your @"
 	text_ram wStringBuffer1
 	text_start
-	para "needs a little"
-	line "more time with us."
+
+	line "isn't any stronger"
+	cont "than when you gave"
+	cont "it to us..."
 
 	para "If you want your"
 	line "#MON back, it"
@@ -1486,7 +1508,7 @@ _OhFineThenText::
 	prompt
 
 _ComeAgainText::
-	text "Come again."
+	text "Come again..."
 	done
 
 _NotYetText::
