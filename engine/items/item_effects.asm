@@ -1346,11 +1346,11 @@ RareCandyEffect:
 	ld [wMonType], a
 	ld a, [wCurPartySpecies]
 	ld [wTempSpecies], a
-	predef LearnLevelMoves
+	;predef LearnLevelMoves
 
 	xor a
 	ld [wForceEvolution], a
-	farcall EvolvePokemon
+	;farcall EvolvePokemon
 
 	jp UseDisposableItem
 
