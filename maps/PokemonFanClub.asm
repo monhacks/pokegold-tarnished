@@ -170,12 +170,12 @@ PokemonFanClubChairmanIWantYouToHaveThisText:
 PokemonFanClubChairmanItsARareCandyText:
 	text "It's a RARE CANDY"
 	line "that makes #MON"
-	cont "stronger."
+	cont "weaker."
 
-	para "I prefer making my"
-	line "#MON stronger"
+	para "I don't want my"
+	line "#MON weaker"
 
-	para "by battling, so"
+	para "...so"
 	line "you can have it."
 	done
 

@@ -383,8 +383,8 @@ CalciumDesc:
 	next "of one #MON.@"
 
 RareCandyDesc:
-	db   "Raises level of a"
-	next "#MON by one.@"
+	db   "Mom said candy is"
+	next "bad for you...@"
 
 XAccuracyDesc:
 	db   "Raises accuracy."
