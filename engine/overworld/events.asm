@@ -892,7 +892,12 @@ CountStep:
 
 .skip_egg
 	; Increase the EXP of (both) DayCare Pokemon by 1.
-	farcall DayCareStep
+
+	;
+	; [Tarnished] Don't call.
+	;
+
+	;farcall DayCareStep
 
 	; Every 4 steps, deal damage to all poisoned Pokemon.
 	ld hl, wPoisonStepCount
