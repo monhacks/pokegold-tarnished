@@ -79,8 +79,8 @@ _RevitalizedText::
 
 _GrewToLevelText::
 	text_ram wStringBuffer1
-	text " weakened to"
-	line "level @"
+	text " weakened"
+	line "to level @"
 	text_decimal wCurPartyLevel, 1, 3
 	text "...@"
 	sound_dex_fanfare_50_79 ; plays SFX_DEX_FANFARE_50_79, identical to SFX_LEVEL_UP
