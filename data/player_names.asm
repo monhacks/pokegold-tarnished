@@ -11,15 +11,15 @@ NameMenuHeader:
 
 PlayerNameArray:
 IF DEF(_GOLD)
+	db "BEO@"
 	db "WEEKLY@"
 	db "WEDS@"
-	db "TAYLOR@"
-	db "KARL@"
+	db "RAZ@"
 ELIF DEF(_SILVER)
+	db "NOOP@"
 	db "WEEKLY@"
 	db "WEDS@"
-	db "OSCAR@"
-	db "MAX@"
+	db "NAIR@"
 ENDC
 	db 2 ; title indent
 	db "NAME@" ; title
