@@ -35,6 +35,7 @@ MainMenu:
 	call MainMenu_PrintCurrentTimeAndDay
 	ld hl, .MenuHeader
 	call LoadMenuHeader
+	call MainMenu_PrintVersion
 	call MainMenuJoypadLoop
 	call CloseWindow
 	jr c, .quit
@@ -159,6 +160,60 @@ MainMenuJoypadLoop:
 .b_button
 	scf
 	ret
+
+VersionString:
+	db "Ver@"
+
+VersionDot:
+	db ".@"
+
+MajorVersion:
+	db "0@"
+
+MinorVersion:
+	db "3@"
+
+RevisionVersion:
+	db "4@"
+
+MainMenu_PrintVersion:
+	push hl
+	push de
+	xor a
+	ldh [hBGMapMode], a
+	hlcoord 15, 0
+	ld b, 16 ; height
+	ld c, 3 ; width
+	call Textbox
+
+	hlcoord 16, 1
+	ld de, VersionString
+	call PlaceString
+
+	hlcoord 17, 4
+	ld de, MajorVersion
+	call PlaceString
+
+	hlcoord 17, 6
+	ld de, VersionDot
+	call PlaceString
+
+	hlcoord 17, 8
+	ld de, MinorVersion
+	call PlaceString
+
+	hlcoord 17, 10
+	ld de, VersionDot
+	call PlaceString
+
+	hlcoord 17, 12
+	ld de, RevisionVersion
+	call PlaceString
+
+	ld a, $1
+	ldh [hBGMapMode], a
+	pop de
+	pop hl
 
 MainMenu_PrintCurrentTimeAndDay:
 	ld a, [wSaveFileExists]
