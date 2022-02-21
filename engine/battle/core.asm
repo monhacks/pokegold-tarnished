@@ -7019,21 +7019,29 @@ GiveExperiencePoints:
 	predef CalcMonStats
 	pop bc
 	pop de
-	ld hl, MON_MAXHP + 1
+	ld hl, MON_HP
 	add hl, bc
-	ld a, [hld]
-	sub e
-	ld e, a
-	ld a, [hl]
-	sbc d
-	ld d, a
-	dec hl
-	ld a, [hl]
-	add e
-	ld [hld], a
-	ld a, [hl]
-	adc d
-	ld [hl], a
+
+	;
+	; Do NOT change current HP when leveling down.
+	;
+
+	; ld hl, MON_MAXHP + 1
+	; add hl, bc
+	; ld a, [hld]
+	; sub e
+	; ld e, a
+	; ld a, [hl]
+	; sbc d
+	; ld d, a
+	; dec hl
+	; ld a, [hl]
+	; add e
+	; ld [hld], a
+	; ld a, [hl]
+	; adc d
+	; ld [hl], a
+
 	ld a, [wCurBattleMon]
 	ld d, a
 	ld a, [wCurPartyMon]

@@ -1308,19 +1308,25 @@ RareCandyEffect:
 	call GetPartyParamLocation
 
 	pop bc
-	ld a, [hld]
-	sub c
-	ld c, a
-	ld a, [hl]
-	sbc b
-	ld b, a
-	dec hl
-	ld a, [hl]
-	add c
-	ld [hld], a
-	ld a, [hl]
-	adc b
-	ld [hl], a
+
+	;
+	; Do NOT change current HP when leveling down.
+	;
+
+	; ld a, [hld]
+	; sub c
+	; ld c, a
+	; ld a, [hl]
+	; sbc b
+	; ld b, a
+	; dec hl
+	; ld a, [hl]
+	; add c
+	; ld [hld], a
+	; ld a, [hl]
+	; adc b
+	; ld [hl], a
+
 	ld c, HAPPINESS_GAINLEVEL
 	farcall ChangeHappiness
 
