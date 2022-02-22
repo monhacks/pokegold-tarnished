@@ -1,3 +1,18 @@
+TarnishedVersionString:
+	db "Ver@"
+
+TarnishedVersionDot:
+	db ".@"
+
+TarnishedMajorVersion:
+	db "0@"
+
+TarnishedMinorVersion:
+	db "3@"
+
+TarnishedRevisionVersion:
+	db "5@"
+
 	; MainMenuItems indexes
 	const_def
 	const MAINMENU_NEW_GAME ; 0
@@ -35,7 +50,7 @@ MainMenu:
 	call MainMenu_PrintCurrentTimeAndDay
 	ld hl, .MenuHeader
 	call LoadMenuHeader
-	call MainMenu_PrintVersion
+	call MainMenuPrintTarnishedVersion
 	call MainMenuJoypadLoop
 	call CloseWindow
 	jr c, .quit
@@ -161,53 +176,38 @@ MainMenuJoypadLoop:
 	scf
 	ret
 
-VersionString:
-	db "Ver@"
-
-VersionDot:
-	db ".@"
-
-MajorVersion:
-	db "0@"
-
-MinorVersion:
-	db "3@"
-
-RevisionVersion:
-	db "4@"
-
-MainMenu_PrintVersion:
+MainMenuPrintTarnishedVersion:
 	push hl
 	push de
 	xor a
 	ldh [hBGMapMode], a
-	hlcoord 15, 0
-	ld b, 16 ; height
+	hlcoord 15, 2
+	ld b, 11 ; height
 	ld c, 3 ; width
 	call Textbox
 
-	hlcoord 16, 1
-	ld de, VersionString
+	hlcoord 16, 3
+	ld de, TarnishedVersionString
 	call PlaceString
 
-	hlcoord 17, 4
-	ld de, MajorVersion
+	hlcoord 17, 5
+	ld de, TarnishedMajorVersion
 	call PlaceString
 
-	hlcoord 17, 6
-	ld de, VersionDot
+	hlcoord 17, 7
+	ld de, TarnishedVersionDot
 	call PlaceString
 
-	hlcoord 17, 8
-	ld de, MinorVersion
+	hlcoord 17, 9
+	ld de, TarnishedMinorVersion
 	call PlaceString
 
-	hlcoord 17, 10
-	ld de, VersionDot
+	hlcoord 17, 11
+	ld de, TarnishedVersionDot
 	call PlaceString
 
-	hlcoord 17, 12
-	ld de, RevisionVersion
+	hlcoord 17, 13
+	ld de, TarnishedRevisionVersion
 	call PlaceString
 
 	ld a, $1
