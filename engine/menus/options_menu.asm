@@ -77,7 +77,7 @@ StringOptions:
 	db "        :<LF>"
 	db "BATTLE STYLE<LF>"
 	db "        :<LF>"
-	db "SOUND<LF>"
+	db "MUSIC<LF>"
 	db "        :<LF>"
 	db "PRINT<LF>"
 	db "        :<LF>"
@@ -265,40 +265,40 @@ Options_BattleStyle:
 .Set:   db "SET  @"
 
 Options_Sound:
-	ld hl, wOptions
+	ld hl, wOptions2
 	ldh a, [hJoyPressed]
 	bit D_LEFT_F, a
 	jr nz, .LeftPressed
 	bit D_RIGHT_F, a
 	jr z, .NonePressed
-	bit STEREO, [hl]
-	jr nz, .SetMono
-	jr .SetStereo
+	bit BG_MUSIC, [hl]
+	jr nz, .ClearBgMusic
+	jr .SetBgMusic
 
 .LeftPressed:
-	bit STEREO, [hl]
-	jr z, .SetStereo
-	jr .SetMono
+	bit BG_MUSIC, [hl]
+	jr z, .SetBgMusic
+	jr .ClearBgMusic
 
 .NonePressed:
-	bit STEREO, [hl]
-	jr nz, .ToggleStereo
-	jr .ToggleMono
+	bit BG_MUSIC, [hl]
+	jr nz, .ToggleBgMusic
+	jr .ToggleNoBgMusic
 
-.SetMono:
-	res STEREO, [hl]
+.ClearBgMusic:
+	res BG_MUSIC, [hl]
 	call RestartMapMusic
 
-.ToggleMono:
-	ld de, .Mono
+.ToggleNoBgMusic:
+	ld de, .NoBgMusic
 	jr .Display
 
-.SetStereo:
-	set STEREO, [hl]
+.SetBgMusic:
+	set BG_MUSIC, [hl]
 	call RestartMapMusic
 
-.ToggleStereo:
-	ld de, .Stereo
+.ToggleBgMusic:
+	ld de, .BgMusic
 
 .Display:
 	hlcoord 11, 9
@@ -306,8 +306,8 @@ Options_Sound:
 	and a
 	ret
 
-.Mono:   db "MONO  @"
-.Stereo: db "STEREO@"
+.NoBgMusic:   db "OFF@"
+.BgMusic: db "ON @"
 
 	const_def
 	const OPT_PRINT_LIGHTEST ; 0

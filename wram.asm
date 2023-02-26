@@ -2292,6 +2292,7 @@ wGBPrinterBrightness::
 	db
 wOptions2::
 ; bit 0: menu account off/on
+; bit 1: bg music off/on
 	db
 
 	ds 2

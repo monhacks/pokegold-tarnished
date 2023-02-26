@@ -67,6 +67,7 @@ GBPRINTER_DARKEST  EQU $7f
 ; wOptions2::
 	const_def
 	const MENU_ACCOUNT ; 0
+	const BG_MUSIC
 
 ; wWalkingDirection::
 	const_def -1

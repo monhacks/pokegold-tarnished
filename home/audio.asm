@@ -75,6 +75,12 @@ PlayMusic::
 	ldh [hROMBank], a
 	ld [MBC3RomBank], a
 
+	; Check if bg music should be played.
+
+	ld a, [wOptions2]
+	bit BG_MUSIC, a
+	jr z, .nomusic
+
 	ld a, e
 	and a
 	jr z, .nomusic
