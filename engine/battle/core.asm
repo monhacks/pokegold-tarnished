@@ -2111,10 +2111,10 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	call IsAnyMonHoldingExpShare
 	ret z
 
-	ld a, [wBattleParticipantsNotFainted]
+	ld a, [wBattleParticipantsIncludingFainted]
 	push af
 	ld a, d
-	ld [wBattleParticipantsNotFainted], a
+	ld [wBattleParticipantsIncludingFainted], a
 	ld hl, wBackupEnemyMonBaseStats
 	ld de, wEnemyMonBaseStats
 	ld bc, wEnemyMonEnd - wEnemyMonBaseStats
@@ -2123,7 +2123,7 @@ UpdateBattleStateAndExperienceAfterEnemyFaint:
 	ld [wGivingExperienceToExpShareHolders], a
 	call GiveExperiencePoints
 	pop af
-	ld [wBattleParticipantsNotFainted], a
+	ld [wBattleParticipantsIncludingFainted], a
 	ret
 
 IsAnyMonHoldingExpShare:
@@ -2133,15 +2133,6 @@ IsAnyMonHoldingExpShare:
 	ld c, 1
 	ld d, 0
 .loop
-	push hl
-	push bc
-	ld bc, MON_HP
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	pop bc
-	pop hl
-	jr z, .next
 
 	push hl
 	push bc
@@ -6727,14 +6718,9 @@ GiveExperiencePoints:
 	ld bc, wPartyMon1Species
 
 .loop
-	ld hl, MON_HP
-	add hl, bc
-	ld a, [hli]
-	or [hl]
-	jp z, .next_mon ; fainted
 
 	push bc
-	ld hl, wBattleParticipantsNotFainted
+	ld hl, wBattleParticipantsIncludingFainted
 	ld a, [wCurPartyMon]
 	ld c, a
 	ld b, CHECK_FLAG
@@ -6919,14 +6905,10 @@ GiveExperiencePoints:
 	;	CurrentExp = MinLevelExp
 	; }
 	;
-
-	;
-	; RAZTODO: I think there is something wrong here. Exp is dropping to min value...
 	;
 	; First check if exp is negative. If so then lower cap. Then compare from top byte to bottom
 	; byte. If  min level is greater (hQuotient > hl), then lower cap.
 	;
-
 
 	ld hl, MON_EXP
 	add hl, bc
@@ -7167,15 +7149,15 @@ GiveExperiencePoints:
 
 .EvenlyDivideExpAmongParticipants:
 ; count number of battle participants
-	ld a, [wBattleParticipantsNotFainted]
+	ld a, [wBattleParticipantsIncludingFainted]
 	ld b, a
 	ld c, PARTY_LENGTH
 	ld d, 0
 .count_loop
 	xor a
-	srl b
-	adc d
-	ld d, a
+	srl b    ; carry = bottom bit of b. b = b >> 1
+	adc d    ; a = a + d + carry
+	ld d, a  ; d = a
 	dec c
 	jr nz, .count_loop
 	cp 2
