@@ -11,7 +11,7 @@ TarnishedMinorVersion:
 	db "3@"
 
 TarnishedRevisionVersion:
-	db "7@"
+	db "8@"
 
 	; MainMenuItems indexes
 	const_def
