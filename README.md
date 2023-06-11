@@ -43,11 +43,13 @@ The challenge was debuted with version `0.3.8` on [Raz][raz-twitch] and [Naircat
 
 ## Contributors
 
-### Raz [*Twitch Channel*][raz-twitch] | [*Github Page*][raz-gh]
+### Raz
+#### [*Twitch Channel*][raz-twitch] | [*Github Page*][raz-gh]
 - Game Logic
 - Initial Playtester
 
-### Naircat [*Twitch Channel*][nair-twitch] | [*Twitter Page*][nair-twitter]
+### Naircat
+#### [*Twitch Channel*][nair-twitch] | [*Twitter Page*][nair-twitter]
 - Title Art
 - Initial Playtester
 
