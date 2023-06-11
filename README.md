@@ -14,14 +14,10 @@ The challenge was debuted with version `0.3.8` on [Raz][raz-twitch] and [Naircat
 - Pokémon lose EXP whenever they participate in battle.
     - This **includes** if they have fainted. A fainted Pokémon is considered part of the active battle set to lose experience points after defeating an opponent Pokémon.
 
-<br>
-
 - When a Pokémon's experience points reach the lower threshold of their current level, they will level *down*.
     - A sad "fanfare" will play indicating the loss of a level during battle.
     - Leveling down reduces stats of your Pokémon. If your current HP happens to be higher than the new max HP for your lowered level, it will remain unchanged until the Pokémon has enough damage inflicted on it, or is healed at a Pokémon center.
     - Leveling down is limited to `Level 2` similar to how the vanilla games limit you to `Level 100`.
-
-<br>
 
 - Pokémon do not learn moves from leveling down.
 
