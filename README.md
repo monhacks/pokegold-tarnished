@@ -1,42 +1,64 @@
-# Pokémon Gold and Silver [![Build Status][ci-badge]][ci]
+# Pokémon Tarnished Gold and Silver
 
-This is a disassembly of Pokémon Gold and Pokémon Silver.
+This challenge ROM hack is a modification of the vanilla Pokémon Gold and Silver where instead of gaining experience points from battle, Pokémon will *lose* experience and levels.
 
-It builds the following ROMs:
+The challenge was debuted with version `0.3.8` on [Raz][raz-twitch] and [Naircat's][nair-twitch] **Weekly Wednesdays** variety stream where they successfully attempted to reach and defeat the Elite Four! Can you make it to the Elite Four as your Pokémon get weaker every battle? Are you willing to challenge Red on Mt.Silver?
 
-- Pokemon - Gold Version (UE) [C][!].gbc `sha1: d8b8a3600a465308c9953dfa04f0081c05bdcb94`
-- Pokemon - Silver Version (UE) [C][!].gbc `sha1: 49b163f7e57702bc939d642a18f591de55d92dae`
-- mons2_gld_ps3_debug.bin `sha1: 53783c57378122805c5b4859d19e1a224f02a1ed`
-- mons2_slv_ps3_debug.bin `sha1: 4c2fafebdbc7551f4cd3f348bdd17e420b93b6e7`
+![Tarnished Gold Title](https://media.discordapp.net/attachments/796754499649667083/1117567403279253614/Screenshot_2023-06-11_143225.png?width=540&height=486)
+![Tarnished Silver Title](https://media.discordapp.net/attachments/796754499649667083/1117567403551899778/Screenshot_2023-06-11_143145.png?width=540&height=486)
 
-To set up the repository, see [INSTALL.md](INSTALL.md).
+## Changelist
 
+- Pokémon lose EXP whenever they participate in battle.
+    - This **includes** if they have fainted. A fainted Pokémon is considered part of the active battle set to lose experience points after defeating an opponent Pokémon.
 
-## See also
+<br>
 
-- **Discord:** [pret][discord]
-- **IRC:** [libera#pret][irc]
+- When a Pokémon's experience points reach the lower threshold of their current level, they will level *down*.
+    - A sad "fanfare" will play indicating the loss of a level during battle.
+    - Leveling down reduces stats of your Pokémon. If your current HP happens to be higher than the new max HP for your lowered level, it will remain unchanged until the Pokémon has enough damage inflicted on it, or is healed at a Pokémon center.
+    - Leveling down is limited to `Level 2` similar to how the vanilla games limit you to `Level 100`.
 
-Other disassembly projects:
+<br>
 
-- [**Pokémon Red/Blue**][pokered]
-- [**Pokémon Yellow**][pokeyellow]
-- [**Pokémon Crystal**][pokecrystal]
-- [**Pokémon Pinball**][pokepinball]
-- [**Pokémon TCG**][poketcg]
-- [**Pokémon Ruby**][pokeruby]
-- [**Pokémon FireRed**][pokefirered]
-- [**Pokémon Emerald**][pokeemerald]
+- Pokémon do not learn moves from leveling down.
 
-[pokered]: https://github.com/pret/pokered
-[pokeyellow]: https://github.com/pret/pokeyellow
-[pokecrystal]: https://github.com/pret/pokecrystal
-[pokepinball]: https://github.com/pret/pokepinball
-[poketcg]: https://github.com/pret/poketcg
-[pokeruby]: https://github.com/pret/pokeruby
-[pokefirered]: https://github.com/pret/pokefirered
-[pokeemerald]: https://github.com/pret/pokeemerald
-[discord]: https://discord.gg/d5dubZ3
-[irc]: https://web.libera.chat/?#pret
-[ci]: https://github.com/pret/pokegold/actions
-[ci-badge]: https://github.com/pret/pokegold/actions/workflows/main.yml/badge.svg
+- Pokémon do not evolve (or de-evolve) from leveling down.
+
+- EXP boosting items or conditions now contribute to experience *loss* instead of gain.
+
+- RareCandy *lowers* a Pokémon's level by 1. (Nice Try)
+
+- The DayCare couple is now absolutely terrible at their job, causing Pokémon to lose experience per step instead of gaining it. (Go visit them to see how they feel about this!)
+
+- Pokémon stats screen now shows experience points remaining to next lowered level.
+
+- Toggle Background Music in the `OPTIONS` screen by using the `MUSIC` option.
+
+- Version is displayed on 'New Game/Continue' screen
+
+## Known Issues
+
+- Sad fanfare is played when a new move is learned.
+
+- Gfx Bug when Pokémon's HP is temporarily above the MaxHP due to level down.
+
+## Contributors
+
+### Raz [*Twitch Channel*][raz-twitch] | [*Github Page*][raz-gh]
+- Game Logic
+- Initial Playtester
+
+### Naircat [*Twitch Channel*][nair-twitch] | [*Twitter Page*][nair-twitter]
+- Title Art
+- Initial Playtester
+
+This ROM hack was built using the hard work from the [**Pokémon Gold and Silver Decompilation Project**][pokegold]!<br>
+To set up the repository for yourself, see [INSTALL.md](INSTALL.md).
+
+[pokegold]: https://github.com/pret/pokegold
+[raz-gh]: https://github.com/raz-a
+[raz-twitch]: https://www.twitch.tv/razstrats
+
+[nair-twitch]: https://www.twitch.tv/naircat
+[nair-twitter]: http://twitter.com/naircatt
