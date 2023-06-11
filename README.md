@@ -4,8 +4,10 @@ This challenge ROM hack is a modification of the vanilla Pokémon Gold and Silve
 
 The challenge was debuted with version `0.3.8` on [Raz][raz-twitch] and [Naircat's][nair-twitch] **Weekly Wednesdays** variety stream where they successfully attempted to reach and defeat the Elite Four! Can you make it to the Elite Four as your Pokémon get weaker every battle? Are you willing to challenge Red on Mt.Silver?
 
-![Tarnished Gold Title](https://media.discordapp.net/attachments/796754499649667083/1117567403279253614/Screenshot_2023-06-11_143225.png?width=540&height=486)
-![Tarnished Silver Title](https://media.discordapp.net/attachments/796754499649667083/1117567403551899778/Screenshot_2023-06-11_143145.png?width=540&height=486)
+<p align="center">
+<img src="https://media.discordapp.net/attachments/796754499649667083/1117567403279253614/Screenshot_2023-06-11_143225.png?width=270&height=243"/>
+<img src="https://media.discordapp.net/attachments/796754499649667083/1117567403551899778/Screenshot_2023-06-11_143145.png?width=270&height=243"/>
+</p>
 
 ## Changelist
 
@@ -52,6 +54,8 @@ The challenge was debuted with version `0.3.8` on [Raz][raz-twitch] and [Naircat
 ### Naircat [*Twitch Channel*][nair-twitch] | [*Twitter Page*][nair-twitter]
 - Title Art
 - Initial Playtester
+
+##
 
 This ROM hack was built using the hard work from the [**Pokémon Gold and Silver Decompilation Project**][pokegold]!<br>
 To set up the repository for yourself, see [INSTALL.md](INSTALL.md).
